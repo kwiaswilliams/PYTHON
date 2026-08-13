@@ -1,2 +1,0 @@
-# PYTHON
-Storing of Python
