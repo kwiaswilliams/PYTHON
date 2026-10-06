@@ -1,131 +1,265 @@
-# PYTHON
-Python practical exercise in Lab:
+# PYTHON Unit 2 Practical:
+# 1. Creating a list
 
-Note: Starting from Q-11 to current:
+fruits = ["Orange", "Grapes", "Carrot"]
+
+print("Original list:", fruits)
+
+# append()
+fruits.append("Apple")
+print("After appending:", fruits)
+
+# insert()
+fruits.insert(1, "Mango")
+print("After inserting:", fruits)
+
+# remove()
+fruits.remove("Carrot")
+print("After removing:", fruits)
+
+# pop()
+fruits.pop()
+print("After poping:", fruits)
+
+# sort()
+fruits.sort()
+print("After sorting:", fruits)
+
+# reverse()
+fruits.reverse()
+print("After reversing:", fruits)
+
+# len()
+print("Total Length of list:", len(fruits))
+
+
+
+# 2. Creating a tuple
+numbers = (5,10,15,10,20)
+
+print("Tuple:", numbers)
+
+# count()
+print("Count of 10:", numbers.count(10))
+
+# index()
+print("Index of 15:", numbers.index(15))
+
+# len()
+print("Length of tuple:", len(numbers))
+
+# max()
+print("Maximum value:", max(numbers))
+
+# min()
+print("Minimum value:", min(numbers))
+
+# sum()
+print("Sum of values:", sum(numbers))
+
+
+# 3. Creating a dictionary
+student = {
+    "name": "Williams",
+    "age": 18,
+    "course": "Cybersecurity"
+}
+
+print("Dictionary:", student)
+
+# keys()
+print("Keys:", student.keys())
+
+# values()
+print("Values:", student.values())
+
+# items()
+print("Items:", student.items())
+
+# get()
+print("Student name:", student.get("name"))
+
+# update()
+student.update({"age": 20})
+print("After update:", student)
+
+# pop()
+student.pop("age")
+print("After pop:", student)
+
+# len()
+print("Length:", len(student))
+
+
+
+
+#4. def Cal_function(number):
+    Multiplication = number * number
+    return Multiplication
+
+
+sum = 10
+Final_result = Cal_function(sum)
+
+print("Number:", sum)
+print("Total Square:", Final_result)
 
 
 
 
 
+# 5. Positional arguments
+def add(a, b):
+    print("Sum:", a + b)
 
 
-#pratical Q-22  Task 3 Sept 8, 2026 
-#1)Single inheritance using classes Animal and Dog:
+add(5, 10)
 
+
+# Default argument
+def greet(name="Student"):
+    print("Hello", name)
+
+
+greet()
+greet("Williams")
+
+
+# Keyword arguments
+def student(name, age):
+    print("Name:", name)
+    print("Age:", age)
+
+
+student(age=10, name="Williams")
+
+
+# Variable-length arguments
+def total(*numbers):
+    print("Total:", sum(numbers))
+
+
+total(5, 10, 15, 20)
+
+
+
+#6. 
+class Student:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def display(self):
+        print("Name:", self.name)
+        print("Age:", self.age)
+
+
+student1 = Student("Williams", 18)
+
+student1.display()
+
+
+
+#7.
+class University:
+
+    def __init__(self, university_name):
+        self.university_name = university_name
+
+    class Student:
+
+        def __init__(self, name):
+            self.name = name
+
+        def display(self):
+            print("Student Name:", self.name)
+
+
+university = University("Marwadi University")
+
+student = University.Student("Kwia S. Williams")
+
+print("University:", university.university_name)
+student.display()
+
+#8.
+class Calculator:
+
+    def add(self, a, b):
+        return a + b
+
+    def multiply(self, a, b):
+        return a * b
+
+
+calc = Calculator()
+
+print("Addition:", calc.add(5, 10))
+print("Multiplication:", calc.multiply(5, 10))
+
+
+#9.
+class Student:
+
+    university = "Marwadi University"
+
+    # Instance method
+    def display(self):
+        print("This is an instance method")
+
+    # Class method
+    @classmethod
+    def display_university(cls):
+        print("University:", cls.university)
+
+    # Static method
+    @staticmethod
+    def check_result(marks):
+        if marks >= 70:
+            print("Result: Pass")
+        else:
+            print("Result: Fail")
+
+
+student = Student()
+
+student.display()
+Student.display_university()
+Student.check_result(90)
+
+
+
+#10.
+class Calculator:
+
+    def add(self, *numbers):
+        return sum(numbers)
+
+
+calc = Calculator()
+
+print("Addition of two numbers:", calc.add(5, 10))
+print("Addition of three numbers:", calc.add(5, 10, 15))
+
+
+#11.
 class Animal:
-    def eat (self):
-        print("Dog love to eat plants and other animals")
-        
+
+    def sound(self):
+        print("Animal loves to walk")
+
+
 class Dog(Animal):
-    def barking (self):
-        print("Dog bark everyday")
+
+    def sound(self):
+        print("Dog usually barks")
 
 
-d=Dog()
+animal = Animal()
+dog = Dog()
 
-
-d.eat()
-d.barking()
-
-#Q-23 similar to 22 task
-#Single Inderitance: SecurityTool - Antivirus
-
-#Q-24 Multilevel inheritance : Security - NetworkSecurity - Firewall:
-
-class Security:
-    def protect (self):
-        print("System protection is enable")
-
-class NetworkSecurity (Security):
-    def monitor_network (self):
-        print("Network traffic is monitored")
-
-class Firewall (NetworkSecurity):
-    def block_traffic(self):
-        print("Malicious traffic is blocked")
-
-f = Firewall()
-f.protect()
-f.monitor_network()
-f.block_traffic()
-
-#Note: Single level, mutilevel & multiple inheritance:
-#Multiple Inheritance: Encryption + Authentication - SecureSystem
-
-class Encryption:
-    def encrypt (self):
-        print("Data is encrypted")
-
-class Authentication:
-    def authenticate (self):
-        print("User authentication is performed") 
-
-class SecureSystem(Encryption, Authentication):
-    def secure_data (self):
-        print("System provide secure data access")
-
-s = SecureSystem()
-s.encrypt()
-s.authenticate()
-s.secure_data()
-
-#Hierarchical Inheritance: SecuritySystem - IDS and IPS
-
-class SecuritySystem:
-    def monitor (self):
-        print("Network is being monitored")
-
-class IDS (SecuritySystem):
-    def detect (self):
-        print("IDS detects suspicious activity")
-
-class IPS (SecuritySystem):
-    def prevent (self):
-        print("IPS prevents malicious activity")
-
-i = IDS()
-p = IPS()
-
-i.monitor()
-i.detect()
-
-class Encryption:
-    def encrypt (self):
-        print("Data is encrypted")
-
-class Authentication:
-    def authenticate (self):
-        print("User authentication is performed") 
-
-class SecureSystem(Encryption, Authentication):
-    def secure_data (self):
-        print("System provide secure data access")
-
-s = SecureSystem()
-s.encrypt()
-s.authenticate()
-s.secure_data()
-
-#Hierarchical Inheritance: SecuritySystem - IDS and IPS using three object 
-
-
-class SecuritySystem:
-    def monitor (self):#method
-        print("Network is being monitored")
-
-class IDS (SecuritySystem):
-    def detect (self):#method
-        print("IDS detects suspicious activity")
-
-class IPS (SecuritySystem):
-    def prevent (self): #method
-        print("IPS prevents malicious activity")
-#represent the object (i & p)
-i = IDS()
-p = IPS()
-#it has to be within the object Ex: we have both i and p object within this example: 
-i.monitor()
-i.detect()
-p.prevent()
+animal.sound()
+dog.sound()
 
 
