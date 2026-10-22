@@ -1,0 +1,393 @@
+1.	Write a Python program to show single inheritance using classes Animal and Dog.
+
+Aim:
+To write a Python program to demonstrate single inheritance using the classes Animal and Dog.
+
+Source Code:
+class Animal:
+    def eat(self):
+        print("Animal loves to eat")
+
+# Dog inherits from Animal
+class Dog(Animal):
+    def bark(self):
+        print("Dog loves to bark")
+
+# Demonstration
+d = Dog()
+d.eat()   
+d.bark()  
+
+
+2.	Python programs to demonstrate the use of various forms of inheritance
+
+
+Aim:
+To write Python programs to demonstrate various forms of inheritance.
+
+Source code:
+
+# 1. Multiple Inheritance (Child inherits from two parent classes)
+class Father:
+    def height(self):
+        print("Father has a Tall height.")
+
+class Mother:
+    def eyes(self):
+        print("Mother have a Blue eyes.")
+
+class Child(Father, Mother):
+    pass
+
+c = Child()
+c.height()
+c.eyes()
+
+# 2. Multilevel Inheritance (Grandparent -> Parent -> Child)
+class Grandparent:
+    def family_name(self):
+        print("Family's Name: Smith")
+
+class Parent(Grandparent):
+    def home(self):
+        print("Lives in Chicago")
+
+class GrandChild(Parent):
+    pass
+
+gc = GrandChild()
+gc.family_name()
+gc.home()
+
+# 3. Hierarchical Inheritance (Multiple children share one parent)
+class Shape:
+    def draw(self):
+        print("Drawing a shape")
+
+class Circle(Shape):
+    pass
+
+class Square(Shape):
+    pass
+
+Circle().draw()
+Square().draw()
+
+
+
+
+
+3.	Write a Python program to handle division by zero using try and except.
+
+Aim:
+To write a Python program to handle division by zero using the try and except blocks.
+
+
+
+Source code:
+
+try:
+    num1 = 10
+    num2 = 0
+    result = num1 / num2
+    print("Result:", result)
+except ZeroDivisionError:
+    print("Error: Cannot divide a number by zero!")
+
+
+
+
+
+
+
+4.	Write a Python program to handle invalid input entered by the user.
+
+Aim:
+To write a Python program to handle invalid input entered by the user.
+
+
+
+Source code:
+
+try:
+    age = int(input("Enter your age: "))
+    print(f"Your age is {age}.")
+except ValueError:
+    print("Error: Invalid input! Please enter an integer.")
+
+
+
+
+
+
+
+
+
+5.	Write a Python program to use try–except–else block.
+
+Aim:
+To write a Python program to demonstrate the use of the try-except-else block.
+
+
+
+Source code:
+
+try:
+    num = int(input("Kindly enter a positive number: "))
+    result = 100 / num
+except ZeroDivisionError:
+    print("Error: Division by zero is not allowed.")
+except ValueError:
+    print("Error: Invalid input.")
+else:
+    print(f"Successful! 100 divided by {num} is {result}")
+
+
+
+
+
+
+
+6.	Write a Python program to use try–except–finally block.
+
+Aim:
+To write a Python program to demonstrate the use of the try-except-finally block.
+
+
+
+Source code:
+
+try:
+    num = int(input("Enter a number to divide 10: "))
+    print("Result:", 10 / num)
+except ZeroDivisionError:
+    print("Error: Division by zero.")
+except ValueError:
+    print("Error: Invalid number format.")
+finally:
+    print("Execution completed (Clean-up code runs here).")
+
+
+
+
+
+
+
+
+7.	Python programs to demonstrate use of modules
+
+Aim:
+To write Python programs to demonstrate the use of modules.
+
+
+
+
+Source code:
+
+# --- Using Built-in Modules ---
+import math
+import random
+
+print("Square root of 16:", math.sqrt(16))
+print("Random number (1-100):", random.randint(1, 100))
+
+
+
+
+
+
+8.	Python programs to demonstrate the use of file handling
+
+Aim:
+To write a Python program to demonstrate file handling operations.
+
+
+
+Source code:
+
+# 1. Writing to a file (creates or overwrites)
+with open("sample.txt", "w") as file:
+    file.write("Hello, World!\nWelcome to Python file handling.\n")
+
+# 2. Reading from a file
+with open("sample.txt", "r") as file:
+    content = file.read()
+    print("File Content:\n", content)
+
+# 3. Reading line by line
+with open("sample.txt", "r") as file:
+    print("Line-by-line reading:")
+    for line in file:
+        print("-", line.strip())
+
+
+
+
+
+9.	Python Programs to demonstrate the use of various modes of files.
+
+Aim:
+To write Python programs to demonstrate the use of various file modes.
+
+
+
+Source code:
+
+# Demonstrate various file modes in Python
+
+# 1. Write mode
+f = open("sample.txt", "w")
+f.write("Hello, Python!\n")
+f.write("Learning file handling.")
+f.close()
+print("Write mode executed.")
+
+# 2. Read mode
+f = open("sample.txt", "r")
+print("\nRead mode:")
+print(f.read())
+f.close()
+
+# 3. Append mode
+f = open("sample.txt", "a")
+f.write("\nThis line is appended.")
+f.close()
+print("\nAppend mode executed.")
+
+# 4. Read and write mode
+f = open("sample.txt", "r+")
+print("\nRead and write mode:")
+print(f.read())
+f.close()
+
+# 5. Create mode
+f = open("newfile.txt", "x")
+f.write("This is a newly created file.")
+f.close()
+print("\nNew file created successfully.")
+
+
+
+
+
+10.	Python programs to demonstrate the use of regular expression
+
+Aim:
+To write Python programs to demonstrate the various use of regular expressions running Ten (10) programs.
+
+
+
+Source code:
+
+#Program 1: Check whether a pattern exists using re.search()
+
+import re
+
+text = "Python programming is easy."
+
+result = re.search("Python", text)
+
+if result:
+    print("Pattern found!")
+else:
+    print("Pattern not found.")
+
+#Program 2: Find all occurrences using re.findall()
+
+import re
+
+text = "cat bat rat cat"
+result = re.findall("cat", text)
+
+print(result)
+
+#Program 3: Replace text using re.sub()
+
+import re
+
+text = "I like Java programming."
+result = re.sub("Java", "Python", text)
+
+print(result)
+
+#Program 4: Split a string using re.split()
+
+import re
+
+text = "Apple,Banana;Mango Orange"
+result = re.split("[,; ]", text)
+
+print(result)
+
+#Program 5: Check whether a string starts with a pattern using re.match()
+
+import re
+
+text = "Python is powerful."
+
+result = re.match("Python", text)
+
+if result:
+    print("String starts with Python.")
+else:
+    print("No match found.")
+
+#Program 6: Extract digits from a string
+
+import re
+
+text = "My roll number is 12345."
+result = re.findall(r"\d+", text)
+
+print(result)
+
+#Program 7: Validate an email address
+
+import re
+
+email = "student@gmail.com"
+
+pattern = r"^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$"
+
+if re.fullmatch(pattern, email):
+    print("Valid email address.")
+else:
+    print("Invalid email address.")
+
+#Program 8: Extract words beginning with a capital letter
+
+import re
+
+text = "Python Is A Popular Language."
+result = re.findall(r"\b[A-Z][a-z]*\b", text)
+
+print(result)
+
+#Program 9: Validate a mobile number
+
+import re
+
+mobile = "9876543210"
+
+if re.fullmatch(r"[6-9]\d{9}", mobile):
+    print("Valid mobile number.")
+else:
+    print("Invalid mobile number.")
+
+#Program 10: Find words containing only alphabets
+
+import re
+
+text = "Python 123 Java 456 Programming"
+result = re.findall(r"\b[A-Za-z]+\b", text)
+
+print(result)
+
+
+
+
+
+
+
+
+
