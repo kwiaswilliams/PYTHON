@@ -1,0 +1,180 @@
+Practical Unit – 5
+1.	Write a Python program to perform a WHOIS lookup for a given domain name and display the result. 
+
+Source Code:
+import whois
+
+domain = "google.com"
+
+result = whois.whois(domain)
+
+print("WHOIS Information:")
+
+print(result)
+
+
+2.	Write a Python program to accept a domain name from the user and show basic WHOIS information.
+
+Source Code:
+
+import whois 
+
+#domain = whois.whois("google.com")
+d = input ("Enter the Domain: ")
+
+domain = whois.whois(d)
+
+print("Domain Name:", domain.domain_name)
+print("Registrar:", domain.registrar)
+print("Creation Date:", domain.creation_date) 
+
+3.	Write a Python program to display the domain registrar name using WHOIS.
+
+Source Code:
+
+import whois
+
+domain = input("Enter Domain Name: ")
+
+result = whois.whois(domain)
+
+print("\nDomain Name:", domain)
+
+print("Registrar Name:", result.registrar)
+4.	Write a Python program to display the domain creation date using WHOIS.
+
+Source Code:
+import whois
+
+domain = input("Enter Domain Name: ")
+
+result = whois.whois(domain)
+
+print("\nDomain Name:", domain)
+
+print("Creation Date:", result.creation_date)
+
+
+5.	Write a Python program to use the dig command to find the IP address of a website (example: google.com). Also, display the DNS records of a given domain.
+
+Source Code:
+
+import subprocess
+import shutil
+
+def run_dig(domain):
+    if shutil.which("dig"):
+        for record in ["A", "MX", "NS"]:
+            print(f"\n--- {record} Records for {domain} ---")
+            cmd = ["dig", domain, "+short"] if record == "A" else ["dig", domain, record, "+short"]
+            print(subprocess.run(cmd, capture_output=True, text=True).stdout.strip())
+    else:
+        print("--- NSLOOKUP Output ---")
+        print(subprocess.run(["nslookup", domain], capture_output=True, text=True).stdout)
+
+run_dig("google.com")
+
+
+6.	Python Program using re — Detect Emails Using Regular Expressions
+
+Source Code:
+import re
+
+text = input("Enter Text: ")
+
+pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+
+result = re.findall(pattern, text)
+
+print("\nEmail Addresses Found:")
+
+print(result)
+
+
+
+7.	Python Program using socket — Simple Port Scanner
+
+
+Source Code:
+import socket
+
+target = "127.0.0.1" #localhost
+ports = [21,22, 80, 443]
+
+for port in ports:
+    s = socket.socket()
+    result = s.connect_ex((target, port))
+    if result == 0:
+        print(f"Port {port} is OPEN") 
+
+    else: 
+        print(f"Port {port} is CLOSED")
+
+    s.close()
+
+
+
+
+
+
+8.	Program to generate hash values of a string using hashlib library.
+
+Source Code:
+
+import hashlib
+
+text = "CyberSecurity123"
+
+# MD5 Hash
+md5_hash = hashlib.md5(text.encode())
+print("MD5 Hash:", md5_hash.hexdigest())
+
+# SHA1 Hash
+sha1_hash = hashlib.sha1(text.encode())
+print("SHA1 Hash:", sha1_hash.hexdigest())
+
+# SHA256 Hash
+sha256_hash = hashlib.sha256(text.encode())
+print("SHA256 Hash:", sha256_hash.hexdigest())
+
+
+9.	Python Program using os Library — Check Files in a Directory
+
+Source Code:
+import os
+
+path = "."
+
+print("Files in current folder:")
+for f in os.listdir(path):
+    print(f)
+
+    
+
+
+
+
+
+
+
+10.	Python program for Ping Scanner shows ip up or down
+
+Source Code:
+import os   # Import os module to run system commands like 'ping'
+
+# Loop from 1 to 5 → this will generate IPs: 192.168.1.1 to 192.168.1.5
+for i in range(1, 6):
+
+    ip = f"192.168.1.{i}"   # Create IP address by adding i at the end
+
+    # Run the ping command once (-c 1)
+    # > /dev/null hides the ping output from the terminal
+    # os.system returns 0 if ping is successful, otherwise non-zero
+    response = os.system(f"ping -c 1 {ip}")
+
+    if response == 0:   # If response is 0, the IP replied → system is UP
+        print(f"{ip} is UP")
+    else:               # If response is not 0 → system is DOWN
+        print(f"{ip} is DOWN")
+
+
