@@ -1,0 +1,333 @@
+Practical Unit – 4
+1.	Write a Python program to connect Python with MySQL database and display a message “Database Connected Successfully”.
+
+Source Code:
+import mysql.connector
+
+mydatabase = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password=""
+)
+
+if mydatabase.is_connected():
+    print("database connected successfully")
+
+mydatabase.close()
+
+2.	Write a Python program to create a table, insert records, retrieve and display records from a table.
+
+Source Code:
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password=""
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("CREATE DATABASE IF NOT EXISTS unit4_db")
+mycursor.execute("USE unit4_db")
+
+mycursor.execute("""
+CREATE TABLE IF NOT EXISTS students (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT
+)
+""")
+
+mycursor.execute("DELETE FROM students")
+
+sql = "INSERT INTO students (id, name, age) VALUES (%s, %s, %s)"
+
+values = [
+    (1, "Kwia", 20),
+    (2, "Samson", 25),
+    (3, "Williams", 30)
+]
+
+mycursor.executemany(sql, values)
+
+mydb.commit()
+
+print("Records inserted successfully")
+
+mycursor.execute("SELECT * FROM students")
+
+records = mycursor.fetchall()
+
+print("Student Records:")
+
+for row in records:
+    print(row)
+
+mydb.close()
+
+3.	Write a Python program to update the records into a MySQL table and display records.
+
+Source Code:
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password=""
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("CREATE DATABASE IF NOT EXISTS Unit4_db")
+mycursor.execute("USE Unit4_db")
+
+mycursor.execute("""
+CREATE TABLE IF NOT EXISTS students (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT
+)
+""")
+
+mycursor.execute("""
+INSERT INTO students VALUES (1, 'Kwia', 20)
+ON DUPLICATE KEY UPDATE name='Kwia', age=20
+""")
+
+mydb.commit()
+
+sql = "UPDATE students SET age = %s WHERE id = %s"
+
+values = (30, 1)
+
+mycursor.execute(sql, values)
+
+mydb.commit()
+
+print("record updated successfully")
+
+mycursor.execute("SELECT* FROM students")
+
+records = mycursor.fetchall()
+
+print("updated student records:")
+
+for row in records:
+    print(row)
+
+mydb.close()
+
+
+4.	Write a Python program to delete the records into a MySQL table and display records.
+
+Source Code:
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password=""
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("CREATE DATABASE IF NOT EXISTS Unit4_db")
+mycursor.execute("USE Unit4_db")
+
+mycursor.execute("""
+CREATE TABLE IF NOT EXISTS students (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT
+)
+""")
+
+mycursor.execute("""
+INSERT INTO students VALUES (1, 'Kwia', 20)
+ON DUPLICATE KEY UPDATE name='Kwia', age=20
+""")
+
+mydb.commit()
+
+sql = "DELETE FROM students WHERE id = %s"
+
+value = (1,)
+
+mycursor.execute(sql, value)
+
+mydb.commit()
+
+print("Record deleted successfully")
+
+mycursor.execute("SELECT * FROM students")
+
+records = mycursor.fetchall()
+
+print("Remaining Student Records:")
+
+for row in records:
+    print(row)
+mydb.close()
+
+
+
+5.	Python Program to demonstrate the use of DataFrames in python.
+
+Source Code:
+
+import pandas as pd
+
+data = {
+    "Name": ["Kwia", "Samson", "Williams"],
+    "Age": [20, 25, 30],
+    "City": ["Mumbai", "Pune", "Gujarat"]
+}
+
+df = pd.DataFrame(data)
+
+print("Student DataFrame:")
+
+print(df)
+
+print("\nDataFrame Information:")
+
+print(df.info())
+
+print("\nFirst Two Records:")
+
+print(df.head(2))
+
+
+6.	Python Programs to demonstrate different ways of creating DataFrames
+
+Source Code:
+import pandas as pd
+
+# 1: Using Dictionary
+data1 = {
+    "Name": ["Kwia", "Samson"],
+    "Age": [20, 25]
+}
+df1 = pd.DataFrame(data1)
+
+print("DataFrame using Dictionary:")
+print(df1)
+
+# Method 2: Using List
+data2 = [
+    ["Kwia", 20],
+    ["Samson", 25],
+    ["Williams", 30]
+]
+
+df2 = pd.DataFrame(data2, columns=["Name", "Age"])
+
+print("\nDataFrame using List:")
+print(df2)
+
+# 3: Using List of Dictionaries
+data3 = [
+    {"Name": "Kwia", "Age": 20},
+    {"Name": "Samson", "Age": 25}
+]
+
+df3 = pd.DataFrame(data3)
+
+print("\nDataFrame using List of Dictionaries:")
+
+print(df3)
+
+# 4: Using Series
+data4 = {
+    "Name": pd.Series(["Kwia", "Samson"]),
+    "Age": pd.Series([20, 25])
+}
+
+df4 = pd.DataFrame(data4)
+
+print("\nDataFrame using Series:")
+print(df4)
+
+
+7.	Python Programs to create Pie chart
+
+Source Code:
+import matplotlib.pyplot as plt
+
+courses = ["Python",  "C++","PHP", "Java"]
+
+marks = [75, 65, 55, 45]
+
+plt.pie(marks, labels=courses, autopct="%1.1f%%")
+
+plt.title("Marks of Courses")
+
+plt.show()
+
+
+
+8.	Python Programs to create histogram
+
+Source Code:
+
+import matplotlib.pyplot as plt
+
+marks = [50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+
+plt.hist(marks, bins=5, edgecolor="black")
+
+plt.title("Marks Distribution")
+
+plt.xlabel("Marks")
+
+plt.ylabel("Number of Students")
+
+plt.show()
+
+
+
+9.	Python Programs to create bar graph
+
+Source Code:
+
+import matplotlib.pyplot as plt
+
+# Data
+courses = ['Python', 'Java', 'C++', 'JavaScript', 'SQL']
+students_enrolled = [120, 85, 60, 95, 110]
+
+# Create Bar Graph
+plt.figure(figsize=(8, 5))
+plt.bar(courses, students_enrolled, color='teal', edgecolor='black', width=0.6)
+plt.title('Course Enrollment Numbers')
+plt.xlabel('Courses')
+plt.ylabel('Number of Students Enrolled')
+plt.grid(axis='y', linestyle='--', alpha=0.5)
+plt.show()
+
+
+
+10.	Python Programs to create Line graph
+
+Source Code:
+
+import matplotlib.pyplot as plt
+
+# Data
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+sales = [12000, 15000, 14000, 18000, 22000, 25000]
+
+# Create Line Graph
+plt.figure(figsize=(8, 5))
+plt.plot(months, sales, marker='o', color='crimson', linestyle='-', linewidth=2, markersize=8)
+plt.title('Monthly Sales Performance')
+plt.xlabel('Month')
+plt.ylabel('Sales (in ₹)')
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.show()
+
+
